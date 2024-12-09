@@ -5,8 +5,6 @@ import { sign } from "hono/jwt";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { hashPassword } from "./utils";
 import {
-  SignupType,
-  SigninType,
   signinInput,
   signupInput,
 } from "@jsbhalla1510/blog-types";
