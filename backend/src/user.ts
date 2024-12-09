@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { sign } from "hono/jwt";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { hashPassword } from "./utils";
+import { SignupType, SigninType } from "@jsbhalla1510/blog-types";
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -21,8 +22,12 @@ userRouter.post("/signup", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body: SignupType = await c.req.json();
   const hashedPassword = await hashPassword(body.password);
+  let name = "";
+  if (body.name) {
+    name = body.name;
+  }
 
   try {
     const userExists = await prisma.user.findUnique({
@@ -35,6 +40,7 @@ userRouter.post("/signup", async (c) => {
         data: {
           email: body.email,
           password: hashedPassword,
+          name: name,
         },
       });
 
@@ -54,7 +60,7 @@ userRouter.post("/signin", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body : SigninType = await c.req.json();
   const hashedPassword = await hashPassword(body.password);
 
   try {

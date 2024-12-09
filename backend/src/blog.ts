@@ -2,6 +2,7 @@ import { verify } from "hono/jwt";
 import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { CreatePostType, UpdatePostType } from "@jsbhalla1510/blog-types";
 
 export const blogRouter = new Hono<{
   Bindings: {
@@ -39,7 +40,7 @@ blogRouter.post("/", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
   const userId = c.get("userId");
-  const body = await c.req.json();
+  const body: CreatePostType = await c.req.json();
   try {
     const post = await prisma.post.create({
       data: {
@@ -61,7 +62,7 @@ blogRouter.put("/", async (c) => {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const body = await c.req.json();
+  const body: UpdatePostType = await c.req.json();
   prisma.post.update({
     where: {
       id: body.id,

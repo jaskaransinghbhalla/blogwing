@@ -1,8 +1,10 @@
 {
-  "name": "@jsbhalla/blog",
+  "name": "@jsbhalla1510/blog-types",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {},
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "",
   "license": "ISC",
   "description": "",
