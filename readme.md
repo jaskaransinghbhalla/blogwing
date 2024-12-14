@@ -6,3 +6,7 @@
 - Language : Typescript
 - Database : Prisma with connecting pool, PostgresSQL
 - Packages : jwt, zod
+
+## Features Implemented
+
+<!-- ## Deploymenet URL -->
