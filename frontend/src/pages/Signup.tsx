@@ -11,7 +11,7 @@ export default function Signup() {
   const [formInput, setFormInput] = useState<SignupFormType>();
 
   const handleSignUp = () => {
-    axios.post(`${BACKEND_HOST}/api/v1/signup`);
+    // axios.post(`${BACKEND_HOST}/api/v1/signup`);
   };
   const handleChange = () => {};
   return (
@@ -25,7 +25,7 @@ export default function Signup() {
               Already have a Account{" "}
               <span
                 onClick={() => {
-                  navigate("/login");
+                  navigate("/signin");
                 }}
                 className="underline"
               >

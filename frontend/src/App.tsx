@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signup from "./pages/Signup";
-import Signin from "./pages/Signin";
 import Blog from "./pages/Blog";
+import Blogs from "./pages/Blogs";
 import Landing from "./pages/Landing";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:id" element={<Blog />} />
         </Routes>
       </BrowserRouter>
