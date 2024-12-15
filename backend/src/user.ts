@@ -21,11 +21,8 @@ userRouter.post("/signup", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  console.log("reached");
   const body = await c.req.json();
-  console.log(body);
   const obj = signupInput.safeParse(body);
-  console.log(obj);
   if (!obj.success) {
     c.status(400);
     return c.json({ error: "invalid input" });

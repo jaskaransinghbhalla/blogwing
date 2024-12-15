@@ -1,16 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-// import axios from "axios";
+import { useNavigate, Navigate } from "react-router-dom";
+// import { useState } from "react";
+import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
-import { SignInFormType } from "../types";
+// import { SignInFormType } from "../types";
 
 export default function SignIn() {
+  const jwtToken = localStorage.getItem("token");
+  const BACKEND_HOST = "http://localhost:8787";
+  if (jwtToken) {
+    return <Navigate to="/blogs" replace />;
+  }
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState<SignInFormType>();
+  // const [formInput, setFormInput] = useState<SignInFormType>();
 
   const handleSignIn = () => {
-    // axios.post(`${BACKEND_HOST}/api/v1/signup`);
+    axios.post(`${BACKEND_HOST}/api/v1/user/signin`);
   };
   const handleChange = () => {};
   return (

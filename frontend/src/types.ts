@@ -3,6 +3,7 @@ export type InputBoxType = {
   placeholder: string;
   type: string;
   onChange: any;
+  value? : string
 };
 
 export type ButtonProps = {
@@ -11,7 +12,7 @@ export type ButtonProps = {
 };
 
 export type SignupFormType = {
-  username: string;
+  name: string;
   email: string;
   password: string;
 };
