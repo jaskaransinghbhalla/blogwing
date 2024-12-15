@@ -4,7 +4,9 @@ import Blogs from "./pages/Blogs";
 import Landing from "./pages/Landing";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-
+export const config = {
+  BACKEND_HOST: import.meta.env.VITE_BACKEND_HOST,
+};
 function App() {
   return (
     <>

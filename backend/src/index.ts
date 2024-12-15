@@ -13,7 +13,7 @@ const app = new Hono<{
   };
 }>();
 
-app.use("/api/*", cors());
+app.use("/", cors());
 app.get("/", async (c) => {
   return c.text("Blogging Backend");
 });

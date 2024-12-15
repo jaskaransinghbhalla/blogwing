@@ -4,8 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
-// @ts-ignore
-import { Navigate } from "react-router-dom";
+import {config }from "../App";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export default function Signup() {
     );
   }
 
-  const BACKEND_HOST = "http://localhost:8787";
   const [formInput, setFormInput] = useState<SignupFormType>({
     name: "",
     email: "",
@@ -29,7 +27,7 @@ export default function Signup() {
 
   const handleSignUp = () => {
     axios
-      .post(`${BACKEND_HOST}/api/v1/user/signup`, formInput)
+      .post(`${config.BACKEND_HOST}/api/v1/user/signup`, formInput)
       .then((response) => {
         localStorage.setItem("token", response.data.jwt);
         console.log("Signup successful", response.data);

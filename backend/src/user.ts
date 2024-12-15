@@ -89,6 +89,7 @@ userRouter.post("/signin", async (c) => {
         const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
         return c.json({ jwt });
       } else {
+        c.status(401)
         return c.text("Incorrect Password");
       }
     } else {
