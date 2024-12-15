@@ -11,7 +11,13 @@ export default function Signup() {
   const navigate = useNavigate();
   const jwtToken = localStorage.getItem("token");
   if (jwtToken) {
-    return <Navigate to="/blogs" replace />;
+    setInterval(() => navigate("/blogs"), 2000);
+    return (
+      <div className="text-3xl flex flex-col justify-center items-center h-screen">
+        <div>You have logged in already. </div>
+        <div>Redirecting you to the Blogs Page </div>
+      </div>
+    );
   }
 
   const BACKEND_HOST = "http://localhost:8787";
@@ -35,7 +41,6 @@ export default function Signup() {
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(e.target);
     setFormInput((prevInput) => ({
       ...prevInput,
       [name.toLowerCase()]: value,

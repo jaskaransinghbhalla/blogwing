@@ -1,25 +1,57 @@
 import { useNavigate, Navigate } from "react-router-dom";
-// import { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
-// import { SignInFormType } from "../types";
+import { SignInFormType } from "../types";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const [loader, setLoader] = useState<boolean>(false);
   const jwtToken = localStorage.getItem("token");
   const BACKEND_HOST = "http://localhost:8787";
   if (jwtToken) {
-    return <Navigate to="/blogs" replace />;
+    setInterval(() => navigate("/blogs"), 2000);
+    return (
+      <div className="text-3xl flex flex-col justify-center items-center h-screen">
+        <div>You have logged in already. </div>
+        <div>Redirecting you to the Blogs Page </div>
+      </div>
+    );
   }
-  const navigate = useNavigate();
-  // const [formInput, setFormInput] = useState<SignInFormType>();
+  const [formInput, setFormInput] = useState<SignInFormType>({
+    email: "",
+    password: "",
+  });
 
   const handleSignIn = () => {
-    axios.post(`${BACKEND_HOST}/api/v1/user/signin`);
+    try {
+      setLoader(true);
+      axios
+        .post(`${BACKEND_HOST}/api/v1/user/signin`, formInput)
+        .then((response) => {
+          localStorage.setItem("token", response.data.jwt);
+          console.log("Signed In successful", response.data);
+          setLoader(false);
+          navigate("/blogs");
+        });
+    } catch (e) {
+      console.log(e);
+      alert(
+        "Error while Signing In. Please check the credentials and Try Again"
+      );
+    }
   };
-  const handleChange = () => {};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormInput((prevInput) => ({
+      ...prevInput,
+      [name.toLocaleLowerCase()]: value,
+    }));
+  };
   return (
     <div>
+      {loader && <div>Loading</div>}
       <div className="grid grid-cols-1 lg:grid-cols-2 ">
         {/* Left */}
         <div className="bg-white-400 flex justify-center items-center h-screen">
@@ -42,12 +74,14 @@ export default function SignIn() {
                 placeholder="Email"
                 name="Email"
                 type="email"
+                value={formInput.email}
               />
               <InputForm
                 onChange={handleChange}
                 placeholder="Password"
                 name="Password"
                 type="password"
+                value={formInput.password}
               />
               <Button text="Signin" onClick={handleSignIn}></Button>
             </div>
