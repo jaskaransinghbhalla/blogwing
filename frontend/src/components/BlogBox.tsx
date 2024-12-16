@@ -4,14 +4,14 @@ export default function BlogBox() {
   const id = 2;
   const navigate = useNavigate();
   return (
-    <div className="my-3 mx-8 p-5 border bg-white shadow-sm rounded-sm">
+    <div className="my-4 mx-8 p-5 border bg-white shadow-sm rounded-sm">
       {/* Top */}
       <div className="flex space-x-2 align-middle">
-        <div className="mx-1 flex items-center">
+        <div className="mx-1 flex items-center w-8 h-8">
           <img
             src="https://via.placeholder.com/150"
             alt="Profile"
-            className="object-cover w-full h-full rounded-full w-[30px] h-[30px]"
+            className="object-cover w-full h-full rounded-full w-8 h-8"
           />
         </div>
         <div className="m-2 text-sm">Peter Raina</div>
