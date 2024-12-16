@@ -25,8 +25,8 @@ export default function SignIn() {
   });
 
   const handleSignIn = () => {
+    setLoader(true);
     try {
-      setLoader(true);
       axios
         .post(`${config.BACKEND_HOST}/api/v1/user/signin`, formInput)
         .then((response) => {
@@ -37,12 +37,12 @@ export default function SignIn() {
             setLoader(false);
             navigate("/blogs");
           } else {
-            alert("somethign is wrong");
+            alert("SOmething is wrong");
           }
         });
     } catch (e) {
       setLoader(false);
-      // console.log(e);
+      console.log(e);
       alert(
         "Error while Signing In. Please check the credentials and Try Again"
       );

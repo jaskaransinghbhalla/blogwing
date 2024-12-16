@@ -12,8 +12,12 @@ const app = new Hono<{
     userId: string;
   };
 }>();
-
-app.use("/", cors());
+app.use(
+  "/",
+  cors({
+    origin: "*", // or '*' to allow all origins
+  })
+);
 app.get("/", async (c) => {
   return c.text("Blogging Backend");
 });
