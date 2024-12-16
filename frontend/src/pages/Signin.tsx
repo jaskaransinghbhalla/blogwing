@@ -30,14 +30,13 @@ export default function SignIn() {
       axios
         .post(`${config.BACKEND_HOST}/api/v1/user/signin`, formInput)
         .then((response) => {
-          console.log(response);
           if (response.status == 200) {
             localStorage.setItem("token", response.data.jwt);
             console.log("Signed In successful", response.data);
             setLoader(false);
             navigate("/blogs");
           } else {
-            alert("SOmething is wrong");
+            alert("Something is wrong");
           }
         });
     } catch (e) {
