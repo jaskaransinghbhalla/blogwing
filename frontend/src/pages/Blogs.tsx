@@ -10,7 +10,7 @@ export default function Blogs() {
     <div>
       <Navbar />
       <div className="bg-gray-100">
-        <div className="grid grid-cols-4 py-8">
+        <div className="grid graid-cols-2 lg:grid-cols-4 py-8">
           <div className="col-span-3">
             <div>
               <div className="px-8">
@@ -32,7 +32,7 @@ export default function Blogs() {
               <BlogBox />
             </div>
           </div>
-          <div></div>
+          <div className="invisible"></div>
         </div>
       </div>
     </div>
