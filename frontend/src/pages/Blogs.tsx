@@ -1,9 +1,10 @@
+import { config } from "../App";
 import { Navigate } from "react-router-dom";
+import { useBlogs } from "../hooks/getBlogs";
 import BlogBox from "../components/BlogBox";
 import Navbar from "../components/Navbar";
-import { useBlogs } from "../hooks/getBlogs";
 export default function Blogs() {
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = config.jwt;
   if (!jwtToken) {
     return <Navigate to="/" replace />;
   }

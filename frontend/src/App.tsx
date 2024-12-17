@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import PostCreator from "./pages/Publish";
 export const config = {
   BACKEND_HOST: import.meta.env.VITE_BACKEND_HOST,
+  jwt: localStorage.getItem("token"),
 };
 function App() {
   return (

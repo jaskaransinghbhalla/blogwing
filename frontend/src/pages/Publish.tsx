@@ -5,7 +5,7 @@ import { config } from "../App";
 import axios from "axios";
 
 export default function Publish() {
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = config.jwt;
   if (!jwtToken) {
     return <Navigate to="/" replace />;
   }

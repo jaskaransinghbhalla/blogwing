@@ -5,12 +5,11 @@ import { Blog } from "../types";
 
 export function useBlogs(): Blog[] {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const jwtToken = localStorage.getItem("token");
   useEffect(() => {
     axios
       .get(`${config.BACKEND_HOST}/api/v1/blog/bulk/`, {
         headers: {
-          Authorization: `${jwtToken}`,
+          Authorization: `${config.jwt}`,
         },
       })
       .then((res) => {
@@ -29,7 +28,7 @@ export function useBlog(id: string): Blog {
     published: false,
   });
   // Optimise here
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = config.jwt;
   useEffect(() => {
     try {
       axios

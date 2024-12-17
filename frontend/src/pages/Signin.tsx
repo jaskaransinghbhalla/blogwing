@@ -1,4 +1,4 @@
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
@@ -9,7 +9,7 @@ import { config } from "../App";
 export default function SignIn() {
   const navigate = useNavigate();
   const [loader, setLoader] = useState<boolean>(false);
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = config.jwt;
   if (jwtToken) {
     setInterval(() => navigate("/blogs"), 2000);
     return (
@@ -32,7 +32,6 @@ export default function SignIn() {
         .then((response) => {
           if (response.status == 200) {
             localStorage.setItem("token", response.data.jwt);
-            console.log("Signed In successful", response.data);
             setLoader(false);
             navigate("/blogs");
           } else {
@@ -41,7 +40,6 @@ export default function SignIn() {
         });
     } catch (e) {
       setLoader(false);
-      console.log(e);
       alert(
         "Error while Signing In. Please check the credentials and Try Again"
       );

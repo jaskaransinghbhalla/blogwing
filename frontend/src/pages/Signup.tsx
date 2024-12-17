@@ -8,7 +8,7 @@ import InputForm from "../components/Input";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const jwtToken = localStorage.getItem("token");
+  const jwtToken = config.jwt;
   if (jwtToken) {
     setInterval(() => navigate("/blogs"), 2000);
     return (

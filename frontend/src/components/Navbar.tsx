@@ -1,17 +1,23 @@
 import { useNavigate } from "react-router";
+import { config } from "../App";
+import Button from "./Button";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const handleLogoutClick = () => {
-    navigate("/");
     localStorage.removeItem("token");
+    navigate("/");
   };
   return (
     <nav className="flex items-center justify-between bg-white px-6 py-2 shadow-sm border-b sticky">
       <button
         className="text-2xl font-bold bg-black text-white p-2 rounded-xl shadow-md"
         onClick={() => {
-          navigate("/");
+          if (config.jwt) {
+            navigate("/blogs");
+          } else {
+            navigate("/");
+          }
         }}
       >
         Blogwing
@@ -61,6 +67,9 @@ export default function Navbar() {
             alt="Profile"
             className="object-cover w-full h-full"
           />
+        </div>
+        <div>
+          <Button text="Logout" onClick={handleLogoutClick}/>
         </div>
       </div>
     </nav>
