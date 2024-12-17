@@ -1,8 +1,8 @@
+import { config } from "../App";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import { config } from "../App";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 export default function Publish() {
   const jwtToken = config.jwt;
