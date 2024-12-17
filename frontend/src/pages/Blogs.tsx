@@ -14,10 +14,10 @@ export default function Blogs() {
       <div className="bg-gray-100">
         <div className="grid graid-cols-2 lg:grid-cols-4 py-8">
           <div className="col-span-3">
-            <div>
+            {/* <div>
               <div className="px-8">
                 <div className="text-lg font-semibold flex border rounded-xl py-4 bg-white w-full shadow-lg">
-                  {/* <button className="px-4 py-1 focus:bg-black focus:text-white border rounded-full shadow-lg mx-2">+</button> */}
+                  <button className="px-4 py-1 focus:bg-black focus:text-white border rounded-full shadow-lg mx-2">+</button>
                   <button className="px-4 py-1 focus:bg-black focus:text-white border rounded-full shadow-lg mx-2">
                     Following
                   </button>
@@ -26,7 +26,8 @@ export default function Blogs() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
+
             <div>
               {blogs.map((blog) => {
                 return <BlogBox key={blog.id} data={blog} />;

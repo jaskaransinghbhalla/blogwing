@@ -54,7 +54,7 @@ blogRouter.post("/", async (c) => {
         authorId: userId,
       },
     });
-    return c.text("Post Created Successfully");
+    return c.json({ id: post.id });
   } catch {
     c.status(404);
     return c.text("Error creating post");
@@ -97,8 +97,6 @@ blogRouter.get("/:id", async (c) => {
       id,
     },
   });
-  console.log(post);
-
   return c.json(post);
 });
 
