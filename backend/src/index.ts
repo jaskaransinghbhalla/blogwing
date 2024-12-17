@@ -12,7 +12,12 @@ const app = new Hono<{
     userId: string;
   };
 }>();
-app.use("/api/*", cors());
+app.use(
+  "/api/*",
+  cors({
+    origin: ["https://blogwing.jsbhalla.in/"],
+  })
+);
 app.get("/", async (c) => {
   return c.text("Blogging Backend");
 });
