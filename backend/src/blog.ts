@@ -97,6 +97,7 @@ blogRouter.get("/:id", async (c) => {
       id,
     },
   });
+  console.log(post);
 
   return c.json(post);
 });
@@ -106,12 +107,7 @@ blogRouter.get("/bulk/", async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
-    const userId = c.get("userId");
-    const posts = await prisma.post.findMany({
-      where: {
-        authorId: userId,
-      },
-    });
+    const posts = await prisma.post.findMany({});
     return c.json(posts);
   } catch {
     return c.text("Error Getting Posts");

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { Blog } from "../types";
 
-export default function BlogBox({ data }: any) {
+export default function BlogBox({ data }: { data: Blog }) {
   const id = 2;
   const navigate = useNavigate();
   return (
@@ -14,14 +15,14 @@ export default function BlogBox({ data }: any) {
             className="object-cover w-full h-full rounded-full w-8 h-8"
           />
         </div>
-        <div className="m-2 text-sm">{data.name}</div>
+        <div className="m-2 text-sm">{data.authorId}</div>
         {/* <div className="m-2 text-sm text-gray-500">{data.date}</div> */}
       </div>
       {/* Middle */}
       <div
         className="cursor-pointer"
         onClick={() => {
-          navigate(`/blog/${id}`);
+          navigate(`/blog/${data.id}`);
         }}
       >
         <button
@@ -30,16 +31,16 @@ export default function BlogBox({ data }: any) {
             navigate(`/blog/${id}`);
           }}
         >
-          Title
+          {data.title}
         </button>
         <div className="text-gray-600">{data.content}</div>
       </div>
-      <div className="mt-8 flex">
+      {/* <div className="mt-8 flex">
         <div className="bg-gray-200 rounded-3xl px-2 py-2 text-sm flex items-center">
           Docker
         </div>
         <div className="m-2 text-sm text-gray-500">4 min Read</div>
-      </div>
+      </div> */}
       <div className="divide-y"></div>
     </div>
   );
