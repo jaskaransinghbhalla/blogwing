@@ -1,9 +1,9 @@
 export type InputBoxType = {
   name: string;
+  onChange: any;
   placeholder: string;
   type: string;
-  onChange: any;
-  value? : string
+  value?: string;
 };
 
 export type ButtonProps = {
@@ -19,4 +19,12 @@ export type SignupFormType = {
 export type SignInFormType = {
   email: string;
   password: string;
+};
+
+export type Blog = {
+  id: string;
+  title: string;
+  content: string;
+  published: boolean;
+  authorId: string;
 };

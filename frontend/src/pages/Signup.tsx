@@ -1,10 +1,10 @@
 import { SignupFormType } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { config } from "../App";
 import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
-import {config }from "../App";
 
 export default function Signup() {
   const navigate = useNavigate();

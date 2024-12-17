@@ -1,11 +1,13 @@
 import { Navigate } from "react-router-dom";
 import BlogBox from "../components/BlogBox";
 import Navbar from "../components/Navbar";
+import { useBlogs } from "../hooks/getBlogs";
 export default function Blogs() {
   const jwtToken = localStorage.getItem("token");
   if (!jwtToken) {
     return <Navigate to="/" replace />;
   }
+  const blogs = useBlogs();
   return (
     <div>
       <Navbar />
@@ -26,10 +28,9 @@ export default function Blogs() {
               </div>
             </div>
             <div>
-              <BlogBox />
-              <BlogBox />
-              <BlogBox />
-              <BlogBox />
+              {blogs.map((blog) => {
+                return <BlogBox key={blog.id} data={blog} />;
+              })}
             </div>
           </div>
           <div className="invisible"></div>

@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 export default function Publish() {
-  // const jwtToken = localStorage.getItem("token");
-  //   if (!jwtToken) {
-  //     return <Navigate to="/" replace />;
-  //   }
+  const jwtToken = localStorage.getItem("token");
+  if (!jwtToken) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div>
       <div className="h-screen bg-gray-200">
