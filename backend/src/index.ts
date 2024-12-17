@@ -15,7 +15,7 @@ const app = new Hono<{
 app.use(
   "/api/*",
   cors({
-    origin: ["https://blogwing.jsbhalla.in/"],
+    origin: ["https://blogwing.jsbhalla.in"],
   })
 );
 app.get("/", async (c) => {
