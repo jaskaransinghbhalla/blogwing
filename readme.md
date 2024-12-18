@@ -1,4 +1,4 @@
-# My Blogging Website
+# Blogging Website
 
 ## Tech Stack
 - Frontend : React
@@ -8,5 +8,3 @@
 - Packages : jwt, zod
 
 ## Features Implemented
-
-<!-- ## Deploymenet URL -->
