@@ -27,4 +27,5 @@ export type Blog = {
   content: string;
   published: boolean;
   authorId: string;
+  author: string;
 };

@@ -17,15 +17,18 @@ export default function Blog() {
         </div>
         <div className="col-span-1 m-8">
           <div className="border rounded p-5">
-            <div className="text-lg font-bold pb-2">{blog.authorId}</div>
-
-            {/* <div className="flex">
-            <div className="bg-gray-500 w-[50px] h-[50px] rounded-full"></div>
-            <div className="pl-4">
-              <div className="font-semibold"> John Walker</div>
-              <div> Master of Computer Technology, University of Pitsburg</div>
+            <div className="text-lg font-bold pb-2">
+              <div className="flex justify-center">About the Author</div>
             </div>
-          </div> */}
+            <div className="flex">
+              {/* <div className="bg-gray-500 w-[50px] h-[50px] rounded-full"></div> */}
+              {/* <div className="pl-4"> */}
+              <div className="font-semibold">{blog.author}</div>
+              {/* <div>
+                  Master of Computer Technology, University of Pitsburg
+                </div> */}
+              {/* </div> */}
+            </div>
           </div>
         </div>
       </div>

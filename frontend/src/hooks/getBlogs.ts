@@ -22,10 +22,11 @@ export function useBlog(id: string): Blog {
   // Optimise here
   const [blog, setBlog] = useState<Blog>({
     authorId: "",
+    author: "",
     content: "",
     id: "",
-    title: "",
     published: false,
+    title: "",
   });
   // Optimise here
   const jwtToken = config.jwt;

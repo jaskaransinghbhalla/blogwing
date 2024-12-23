@@ -10,7 +10,7 @@ export default function Blogs() {
   }
   const blogs = useBlogs();
   return (
-    <div className="bg-gray-100 h-screen">
+    <div className="bg-gray-100">
       <Navbar />
       <div className="">
         <div className="grid graid-cols-2 lg:grid-cols-4 py-8">

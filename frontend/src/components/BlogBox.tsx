@@ -9,13 +9,11 @@ export default function BlogBox({ data }: { data: Blog }) {
       {/* Top */}
       <div className="flex space-x-2 align-middle">
         <div className="mx-1 flex items-center w-8 h-8">
-          <img
-            src="https://via.placeholder.com/150"
-            alt="Profile"
-            className="object-cover w-full h-full rounded-full w-8 h-8"
-          />
+          <div className="bg-gray-300 text-gray-500 rounded-full w-8 h-8 flex items-center justify-center">
+            {data.author.charAt(0).toUpperCase()}
+          </div>
         </div>
-        <div className="m-2 text-sm">{data.authorId}</div>
+        <div className="m-2 text-sm">{data.author}</div>
         {/* <div className="m-2 text-sm text-gray-500">{data.date}</div> */}
       </div>
       {/* Middle */}
@@ -33,7 +31,11 @@ export default function BlogBox({ data }: { data: Blog }) {
         >
           {data.title}
         </button>
-        <div className="text-gray-600">{data.content}</div>
+        <div>
+          {data.content.split(" ").length > 50
+            ? data.content.split(" ").slice(0, 50).join(" ") + "..."
+            : data.content}
+        </div>
       </div>
       {/* <div className="mt-8 flex">
         <div className="bg-gray-200 rounded-3xl px-2 py-2 text-sm flex items-center">
