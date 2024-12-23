@@ -56,9 +56,6 @@ export default function SignIn() {
       [name.toLocaleLowerCase()]: value,
     }));
   };
-  if (config.jwt) {
-    return redirect("/blogs");
-  }
   return (
     <div>
       {loader && <div>Loading</div>}
