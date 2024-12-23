@@ -31,6 +31,7 @@ export default function Signup() {
       .post(`${config.BACKEND_HOST}/api/v1/user/signup`, formInput)
       .then((response) => {
         Cookies.set("token", response.data.jwt, { secure: true });
+        config.jwt = response.data.jwt;
         navigate("/signin");
       })
       .catch((error) => {

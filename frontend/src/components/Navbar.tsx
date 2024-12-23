@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import { config } from "../App";
 import Button from "./Button";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const handleLogoutClick = () => {
-    localStorage.removeItem("token");
+    Cookies.remove("token");
+    config.jwt = null;
     navigate("/");
   };
   return (
@@ -69,7 +71,7 @@ export default function Navbar() {
           />
         </div>
         <div>
-          <Button text="Logout" onClick={handleLogoutClick}/>
+          <Button text="Logout" onClick={handleLogoutClick} />
         </div>
       </div>
     </nav>

@@ -1,11 +1,12 @@
 import { config } from "../App";
 import { SignInFormType } from "../types";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
 import Cookies from "js-cookie";
+
 export default function SignIn() {
   const navigate = useNavigate();
   const [loader, setLoader] = useState<boolean>(false);
@@ -35,6 +36,7 @@ export default function SignIn() {
           if (response.status == 200) {
             Cookies.set("token", response.data.jwt, { secure: true });
             setLoader(false);
+            config.jwt = response.data.jwt;
             navigate("/blogs");
           } else {
             alert("Something is wrong");
@@ -54,6 +56,9 @@ export default function SignIn() {
       [name.toLocaleLowerCase()]: value,
     }));
   };
+  if (config.jwt) {
+    return redirect("/blogs");
+  }
   return (
     <div>
       {loader && <div>Loading</div>}
