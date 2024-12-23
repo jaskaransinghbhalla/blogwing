@@ -1,9 +1,10 @@
+import { config } from "../App";
 import { SignupFormType } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { config } from "../App";
 import axios from "axios";
 import Button from "../components/Button";
+import Cookies from "js-cookie";
 import InputForm from "../components/Input";
 
 export default function Signup() {
@@ -29,12 +30,13 @@ export default function Signup() {
     axios
       .post(`${config.BACKEND_HOST}/api/v1/user/signup`, formInput)
       .then((response) => {
-        localStorage.setItem("token", response.data.jwt);
-        console.log("Signup successful", response.data);
-        navigate("/blogs");
+        Cookies.set("token", response.data.jwt, { secure: true });
+        navigate("/signin");
       })
       .catch((error) => {
-        console.error("There was an error signing up!", error);
+        if (error.status == 409) {
+          alert("Email is already registered!");
+        }
       });
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +86,9 @@ export default function Signup() {
                 type="password"
                 value={formInput.password}
               />
-              <Button text="Signup" onClick={handleSignUp}></Button>
+              <div className="mt-4">
+                <Button text="Signup" onClick={handleSignUp}></Button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,17 +1,19 @@
+import { config } from "../App";
+import { SignInFormType } from "../types";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
 import InputForm from "../components/Input";
-import { SignInFormType } from "../types";
-import { config } from "../App";
-
+import Cookies from "js-cookie";
 export default function SignIn() {
   const navigate = useNavigate();
   const [loader, setLoader] = useState<boolean>(false);
   const jwtToken = config.jwt;
   if (jwtToken) {
-    setInterval(() => navigate("/blogs"), 2000);
+    useEffect(() => {
+      setInterval(() => navigate("/blogs"), 2000);
+    }, []);
     return (
       <div className="text-3xl flex flex-col justify-center items-center h-screen">
         <div>You have logged in already. </div>
@@ -31,7 +33,7 @@ export default function SignIn() {
         .post(`${config.BACKEND_HOST}/api/v1/user/signin`, formInput)
         .then((response) => {
           if (response.status == 200) {
-            localStorage.setItem("token", response.data.jwt);
+            Cookies.set("token", response.data.jwt, { secure: true });
             setLoader(false);
             navigate("/blogs");
           } else {
@@ -86,7 +88,9 @@ export default function SignIn() {
                 type="password"
                 value={formInput.password}
               />
-              <Button text="Signin" onClick={handleSignIn}></Button>
+              <div className="mt-4">
+                <Button text="Signin" onClick={handleSignIn}></Button>
+              </div>
             </div>
           </div>
         </div>

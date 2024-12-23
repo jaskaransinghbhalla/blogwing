@@ -5,9 +5,10 @@ import Landing from "./pages/Landing";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import PostCreator from "./pages/Publish";
+import Cookies from "js-cookie";
 export const config = {
   BACKEND_HOST: import.meta.env.VITE_BACKEND_HOST,
-  jwt: localStorage.getItem("token"),
+  jwt: Cookies.get("token"),
 };
 function App() {
   return (
